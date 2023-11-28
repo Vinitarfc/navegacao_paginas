@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:navegacao_paginas/two_page.dart';
+import 'package:navegacao_paginas/widgets/custom_button_widget.dart';
+//import 'package:navegacao_paginas/two_page.dart';
 
 class OnePage extends StatelessWidget {
   const OnePage({Key? key}) : super(key: key);
@@ -8,13 +9,14 @@ class OnePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton(
+        child: CustomButtonWidget(
+          disable: false,
           onPressed: () {
             Navigator.of(context)
                 .pushNamed('/twoPage', arguments: 'teste')
                 .then((value) => print(value));
           },
-          child: Text('Ir para Segunda Page'),
+          title: 'Ir para Segunda Page',
         ),
       ),
     );
