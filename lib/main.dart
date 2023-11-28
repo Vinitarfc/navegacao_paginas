@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:navegacao_paginas/one_page.dart';
+import 'package:navegacao_paginas/two_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.green,
       ),
-      home: OnePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (_) => const OnePage(),
+        '/twoPage': (_) => const TwoPage(),
+      },
     );
   }
 }

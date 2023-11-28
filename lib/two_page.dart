@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 class TwoPage extends StatelessWidget {
-  final String args;
-  const TwoPage({Key? key, required this.args}) : super(key: key);
+  const TwoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: Colors.blue.shade100,
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            if (Navigator.canPop(context)) {
+              Navigator.of(context).pop('retorno');
+            }
           },
           child: Text('Voltar para Page $args'),
         ),
