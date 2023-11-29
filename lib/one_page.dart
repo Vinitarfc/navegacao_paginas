@@ -12,14 +12,13 @@ class OnePage extends StatefulWidget {
 }
 
 class _OnePageState extends State<OnePage> {
-  int valorAleatorio = 0;
+  ValueNotifier<int> valorAleatorio = ValueNotifier<int>(0);
 
   random() async {
     for (int i = 0; i < 10; i++) {
       await Future.delayed(Duration(seconds: 1));
-      setState(() {
-        valorAleatorio = Random().nextInt(1000);
-      });
+
+      valorAleatorio.value = Random().nextInt(1000);
     }
   }
 
@@ -31,9 +30,12 @@ class _OnePageState extends State<OnePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Valor é: $valorAleatorio',
-              style: TextStyle(fontSize: 20),
+            ValueListenableBuilder(
+              valueListenable: valorAleatorio,
+              builder: (_, value, __) => Text(
+                'Valor é: $value',
+                style: TextStyle(fontSize: 20),
+              ),
             ),
             SizedBox(height: 10),
             CustomButtonWidget(
